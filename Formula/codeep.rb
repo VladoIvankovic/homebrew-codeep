@@ -8,11 +8,20 @@ class Codeep < Formula
   depends_on "node"
 
   def install
-    system "npm", "install", "-g", "--prefix=#{libexec}", "codeep@#{version}"
-    bin.install_symlink "#{libexec}/bin/codeep"
+    # Install the package using npm
+    system "npm", "install", "-g", "--prefix=#{prefix}", "codeep@#{version}"
+    
+    # Create a wrapper script that sets NODE_PATH
+    (bin/"codeep").write <<~EOS
+      #!/bin/bash
+      export NODE_PATH="#{prefix}/lib/node_modules"
+      exec "#{Formula["node"].opt_bin}/node" "#{prefix}/lib/node_modules/codeep/dist/index.js" "$@"
+    EOS
+    
+    chmod 0755, bin/"codeep"
   end
 
   test do
-    system "#{bin}/codeep", "--version"
+    assert_match version.to_s, shell_output("#{bin}/codeep --version 2>&1", 1)
   end
 end
