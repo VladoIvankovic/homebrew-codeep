@@ -8,7 +8,7 @@ class Codeep < Formula
   depends_on "node"
 
   def install
-    system "npm", "install", "-g", "--prefix=#{prefix}", "."
+    system "npm", "install", "-g", "--prefix=#{prefix}", "--omit=dev", "codeep@1.0.0"
   end
 
   test do
