@@ -8,7 +8,7 @@ class Codeep < Formula
   depends_on "node"
 
   def install
-    system "npm", "install", "-g", "--prefix=#{libexec}"
+    system "npm", "install", "-g", "--prefix=#{libexec}", "codeep@#{version}"
     bin.install_symlink "#{libexec}/bin/codeep"
   end
 
