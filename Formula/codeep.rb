@@ -1,14 +1,14 @@
 class Codeep < Formula
   desc "AI-powered coding assistant built for the terminal"
   homepage "https://codeep.dev"
-  url "https://registry.npmjs.org/codeep/-/codeep-1.2.13.tgz"
-  sha256 "7c44e5b806843fd7ba43d36ee203ddc757db4a48861f560ab5ebb243bd7eae89"
+  url "https://registry.npmjs.org/codeep/-/codeep-1.2.14.tgz"
+  sha256 "4df91002d027cc4902ae282876ecb8e882e8e6812cfd26b24ed16546d4a4550a"
   license "Apache-2.0"
 
   depends_on "node"
 
   def install
-    system "npm", "install", "-g", "--prefix=#{prefix}", "--omit=dev", "codeep@1.2.13"
+    system "npm", "install", "-g", "--prefix=#{prefix}", "--omit=dev", "codeep@1.2.14"
   end
 
   test do
